@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemeGroup | Chuyền Video Meme Bạn Bè</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/phosphor-icons"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #c7d2fe 50%, #f0abfc 100%);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            color: #22223b;
+            padding-top: 5rem;
+        }
+        .glass {
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1.5px solid rgba(200,200,255,0.18);
+            box-shadow: 0 8px 32px 0 rgba(168, 85, 247, 0.12);
+        }
+        .sidebar {
+            transform: translateX(100%);
+            transition: transform 0.3s;
+            z-index: 50;
+        }
+        .sidebar.open {
+            transform: translateX(0);
+        }
+        .overlay {
+            background: rgba(0,0,0,0.4);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 40;
+        }
+        .overlay.show {
+            visibility: visible;
+            opacity: 1;
+        }
+        .sidebar ul li a {
+            padding: 0.75rem 1.5rem;
+            display: block;
+            border-radius: 12px;
+            transition: background 0.2s;
+        }
+        .sidebar ul li a:hover {
+            background: rgba(168,85,247,0.12);
+        }
+        .btn-main {
+            background: linear-gradient(90deg, #a78bfa, #f472b6);
+            color: #fff;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(168,85,247,0.18);
+            transition: all 0.5s;
+        }
+        .btn-main:hover {
+            background: linear-gradient(90deg, #f472b6, #a78bfa);
+            transition: all 1s;
+            box-shadow: 0 6px 20px rgba(168,85,247,0.28);
+        }
+    </style>
+</head>
+<body>
+    <!-- Overlay -->
+    <div id="overlay" class="overlay fixed inset-0" onclick="toggleSidebar()"></div>
+
+    <!-- Navbar -->
+    <nav class="glass fixed top-0 left-0 right-0 z-50 p-4 mx-4 mt-4 rounded-[28px] opacity-0 translate-y-[-20px] transition-all duration-700" id="navbar">
+        <div class="flex items-center justify-between max-w-5xl mx-auto">
+            <a href="#" class="text-2xl font-black flex items-center text-purple-700">
+                <i class="ph ph-smiley text-3xl mr-2 text-pink-400"></i>
+                MemeGroup
+            </a>
+            <div class="hidden md:flex space-x-6 text-lg">
+                <a href="#" class="hover:text-pink-500 transition">Trang Chủ</a>
+                <a href="#" class="hover:text-pink-500 transition">Meme Mới</a>
+                <a href="#" class="hover:text-pink-500 transition">Nhóm Của Tôi</a>
+                <a href="#" class="hover:text-pink-500 transition">Liên Hệ</a>
+                <button class="btn-main py-1.5 px-4 rounded-full">Đăng Nhập</button>
+            </div>
+            <button id="menuBtn" class="md:hidden p-2 text-purple-700" onclick="toggleSidebar()">
+                <i class="ph-list text-3xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Sidebar (Mobile) -->
+    <div id="sidebar" class="sidebar fixed top-0 right-0 w-80 h-full glass md:hidden opacity-0 translate-x-10 transition-all duration-700">
+        <div class="flex justify-between items-center p-6 mb-4 mt-12">
+            <h2 class="text-2xl font-bold text-purple-700">Menu</h2>
+            <button class="p-2 text-pink-400" onclick="toggleSidebar()">
+                <i class="ph-x text-3xl"></i>
+            </button>
+        </div>
+        <ul class="flex flex-col space-y-2 p-4">
+            <li><a href="#">Trang Chủ</a></li>
+            <li><a href="#">Meme Mới</a></li>
+            <li><a href="#">Nhóm Của Tôi</a></li>
+            <li><a href="#">Liên Hệ</a></li>
+            <li class="pt-4">
+                <button class="btn-main w-full py-2.5 rounded-xl">Đăng Ký</button>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8 opacity-0 translate-y-8 transition-all duration-700" id="main-content">
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-purple-700 mb-8 mt-4 text-center">
+            Chuyền <span class="text-pink-400">Video Meme</span> Bạn Bè Cùng Nhóm!
+        </h1>
+        <!-- Meme Video Section -->
+        <section class="mb-12 fade-section transition-all duration-700 opacity-0 translate-y-8">
+            <h2 class="text-3xl font-bold text-pink-400 mb-6 border-b border-pink-200 pb-2">Meme Hot Nhất</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Main Meme Video Card -->
+                <div class="glass p-6 rounded-[28px] lg:col-span-1">
+                    <div class="aspect-video bg-pink-100 rounded-2xl mb-4 flex items-center justify-center text-3xl text-pink-400">
+                        <a href="video-7055881323875.html" class="block w-full h-full">
+                            <video controls class="w-full h-full rounded-2xl bg-black">
+                                <source src="vid/7055881323875.mp4" type="video/mp4">
+                                Trình duyệt của bạn không hỗ trợ video.
+                            </video>
+                        </a>
+                    </div>
+                    <a href="video-7055881323875.html">
+                        <h3 class="text-2xl font-bold text-purple-700 mb-2 hover:text-pink-400 cursor-pointer">
+                            Khi Nhóm Bạn Được Nghỉ Học Đột Xuất 😂
+                        </h3>
+                    </a>
+                    <p class="text-gray-600 text-sm">
+                        Đăng bởi: <span class="font-semibold text-pink-400">Hải Meme</span> | 02/10/2025
+                    </p>
+                    <a href="video-7055881323875.html">
+                        <button class="btn-main mt-4 py-2 px-6 rounded-full">Xem & Chia Sẻ</button>
+                    </a>
+                </div>
+                <!-- Recent Meme Videos -->
+                <div class="space-y-4">
+                    <article class="glass p-4 rounded-xl flex items-center space-x-4">
+                        <div class="w-32 h-20 bg-purple-100 rounded-lg flex items-center justify-center text-2xl text-purple-400 overflow-hidden">
+                            <video controls class="w-full h-full object-cover rounded-lg">
+                                <source src="vid/7055904370012.mp4" type="video/mp4">
+                                Trình duyệt của bạn không hỗ trợ video.
+                            </video>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-purple-700 hover:text-pink-400 cursor-pointer">Khi Cả Nhóm Đều Quên Làm Bài Tập</h4>
+                            <p class="text-xs text-gray-500">Meme | 1 phút</p>
+                        </div>
+                    </article>
+                    <article class="glass p-4 rounded-xl flex items-center space-x-4">
+                        <div class="w-32 h-20 bg-pink-100 rounded-lg flex items-center justify-center text-2xl text-pink-400 overflow-hidden">
+                            <video controls class="w-full h-full object-cover rounded-lg">
+                                <source src="vid/vd1.mp4" type="video/mp4">
+                                Trình duyệt của bạn không hỗ trợ video.
+                            </video>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-purple-700 hover:text-pink-400 cursor-pointer">Thằng Bạn Chơi Game Thua Cay</h4>
+                            <p class="text-xs text-gray-500">Meme | 45 giây</p>
+                        </div>
+                    </article>
+                    <article class="glass p-4 rounded-xl flex items-center space-x-4">
+                        <div class="w-32 h-20 bg-yellow-100 rounded-lg flex items-center justify-center text-2xl text-yellow-400 overflow-hidden">
+                            <video controls class="w-full h-full object-cover rounded-lg">
+                                <source src="vid/vd2.mp4" type="video/mp4">
+                                Trình duyệt của bạn không hỗ trợ video.
+                            </video>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-purple-700 hover:text-pink-400 cursor-pointer">Khi Nhóm Chat Lúc 2h Sáng</h4>
+                            <p class="text-xs text-gray-500">Meme | 30 giây</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <!-- Group Meme Section -->
+        <section class="mb-12 fade-section transition-all duration-700 opacity-0 translate-y-8">
+            <h2 class="text-3xl font-bold text-purple-700 mb-6 border-b border-pink-200 pb-2">Meme Nhóm Của Bạn</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <article class="glass p-4 rounded-[20px] hover:scale-[1.03] transition-transform duration-300 cursor-pointer">
+                    <div class="aspect-video bg-pink-100 rounded-xl mb-3 flex items-center justify-center text-2xl text-pink-400 overflow-hidden">
+                        <video controls class="w-full h-full object-cover rounded-xl">
+                            <source src="vid/7055881323875.mp4" type="video/mp4">
+                            Trình duyệt của bạn không hỗ trợ video.
+                        </video>
+                    </div>
+                    <h3 class="font-semibold text-purple-700 mb-1 hover:text-pink-400">Chuyền Meme: Đứa Bạn Lầy Nhất</h3>
+                    <p class="text-xs text-gray-500">12 lượt chia sẻ</p>
+                </article>
+                <article class="glass p-4 rounded-[20px] hover:scale-[1.03] transition-transform duration-300 cursor-pointer">
+                    <div class="aspect-video bg-purple-100 rounded-xl mb-3 flex items-center justify-center text-2xl text-purple-400 overflow-hidden">
+                        <video controls class="w-full h-full object-cover rounded-xl">
+                            <source src="vid/7055904370012.mp4" type="video/mp4">
+                            Trình duyệt của bạn không hỗ trợ video.
+                        </video>
+                    </div>
+                    <h3 class="font-semibold text-purple-700 mb-1 hover:text-pink-400">Meme: Cả Nhóm Đi Ăn Trả Tiền</h3>
+                    <p class="text-xs text-gray-500">8 lượt chia sẻ</p>
+                </article>
+                <article class="glass p-4 rounded-[20px] hover:scale-[1.03] transition-transform duration-300 cursor-pointer">
+                    <div class="aspect-video bg-yellow-100 rounded-xl mb-3 flex items-center justify-center text-2xl text-yellow-400 overflow-hidden">
+                        <video controls class="w-full h-full object-cover rounded-xl">
+                            <source src="vid/vd1.mp4" type="video/mp4">
+                            Trình duyệt của bạn không hỗ trợ video.
+                        </video>
+                    </div>
+                    <h3 class="font-semibold text-purple-700 mb-1 hover:text-pink-400">Meme: Đứa Bạn Đến Muộn</h3>
+                    <p class="text-xs text-gray-500">15 lượt chia sẻ</p>
+                </article>
+                <article class="glass p-4 rounded-[20px] hover:scale-[1.03] transition-transform duration-300 cursor-pointer">
+                    <div class="aspect-video bg-green-100 rounded-xl mb-3 flex items-center justify-center text-2xl text-green-400 overflow-hidden">
+                        <video controls class="w-full h-full object-cover rounded-xl">
+                            <source src="vid/vd2.mp4" type="video/mp4">
+                            Trình duyệt của bạn không hỗ trợ video.
+                        </video>
+                    </div>
+                    <h3 class="font-semibold text-purple-700 mb-1 hover:text-pink-400">Meme: Nhóm Học Online</h3>
+                    <p class="text-xs text-gray-500">22 lượt chia sẻ</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 text-gray-400 text-sm">
+        &copy; 2025 MemeGroup. Chia sẻ meme cùng bạn bè, cười vui mỗi ngày!
+    </footer>
+
+    <script>
+        // Hiệu ứng hiện ra khi load trang
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('navbar').classList.remove('opacity-0', 'translate-y-[-20px]');
+            document.getElementById('main-content').classList.remove('opacity-0', 'translate-y-8');
+            document.getElementById('sidebar').classList.remove('opacity-0', 'translate-x-10');
+        });
+
+        // Hiệu ứng khi scroll tới section
+        function revealOnScroll() {
+            const sections = document.querySelectorAll('.fade-section');
+            const triggerBottom = window.innerHeight * 0.9;
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < triggerBottom) {
+                    section.classList.remove('opacity-0', 'translate-y-8');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('DOMContentLoaded', revealOnScroll);
+
+        // Sidebar cho mobile (giữ nguyên)
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        function toggleSidebar() {
+            const isOpen = sidebar.classList.contains('open');
+            if (isOpen) {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('show');
+                document.body.style.overflow = '';
+            } else {
+                sidebar.classList.add('open');
+                overlay.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+</body>
+</html>

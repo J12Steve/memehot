@@ -1,0 +1,53 @@
+Hướng dẫn chung cho Copilot trong dự án website bài viết video.
+version: 1
+
+Ngữ cảnh dự án
+Mục tiêu: Xây dựng một website trình bày các bài viết có định dạng video.
+context:
+
+Dự án này là một nền tảng tổng hợp và trình bày các bài viết video.
+
+Các thành phần chính bao gồm: Trang chủ (danh sách video mới nhất), Trang chi tiết bài viết (chứa video player và nội dung mô tả), và Trang danh mục.
+
+Cấu trúc dữ liệu (nếu sử dụng Firestore) thường bao gồm: videos (id, tieu_de, mo_ta, duong_dan_video, danh_muc, ngay_dang, luot_xem).
+
+Tên biến, hàm, và classes ưu tiên sử dụng tiếng Việt (ví dụ: baiViet, thanhMenu, taiDuLieu).
+
+Quy tắc và hạn chế về mã hóa
+coding_style:
+
+Framework/Ngôn ngữ chính
+Sử dụng HTML5, Tailwind CSS, và JavaScript thuần (hoặc React/Angular nếu được yêu cầu rõ ràng, nhưng mặc định là vanilla JS).
+
+Đối với giao diện người dùng, phải luôn đảm bảo Responsive Design (tối ưu cho cả desktop và mobile).
+
+Sử dụng Tailwind CSS cho mọi tiện ích về bố cục và thiết kế nhanh.
+
+Tránh các thư viện JavaScript lớn trừ khi cần thiết cho tính năng cốt lõi (ví dụ: video player).
+
+Nguyên tắc thiết kế (Glassmorphism)
+design_principles:
+
+Thẩm mỹ chủ đạo: Liquid Glass / Glassmorphism.
+
+Các khối UI lớn (Navbar, Sidebar, Card) phải có hiệu ứng kính: backdrop-filter: blur(15px);
+
+Màu nền kính: rất sáng và trong suốt (rgba(255, 255, 255, 0.45)).
+
+Màu sắc: Nền gradient Xanh Đậm/Navy, nhấn nhá bằng Sky Blue/Trắng. Không dùng Vàng/Đồng.
+
+Bo tròn lớn (High Border-Radius) cho các container chính (tối thiểu 20px).
+
+Hành vi khi tạo mã
+behavior:
+
+Cấu trúc HTML/CSS
+Thanh điều hướng (Navbar) phải là Fixed và nổi bật (Glassmorphism).
+
+Trong chế độ mobile, menu phải chuyển sang Sidebar Off-Canvas (trượt từ phải sang).
+
+Ưu tiên tối ưu hóa SEO cho các bài viết video (sử dụng thẻ meta, schema markup thích hợp).
+
+Đảm bảo hiệu suất tải trang nhanh, đặc biệt là việc tải video.
+
+Code phải có comment rõ ràng bằng tiếng Việt cho các phần phức tạp.
