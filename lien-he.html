@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên hệ | MemeGroup</title>
+    <meta name="description" content="Liên hệ với MemeGroup để gửi video meme, hình ảnh hoặc góp ý.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/phosphor-icons"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #3852b9 50%, #bc44d6 100%);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            color: #22223b;
+            padding-top: 5rem;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.232);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1.5px solid rgba(200, 200, 255, 0.523);
+            box-shadow: 0 8px 32px 0 rgba(168, 85, 247, 0.12);
+        }
+        .sidebar {
+            transform: translateX(100%);
+            transition: transform 0.3s;
+            z-index: 50;
+        }
+        .sidebar.open {
+            transform: translateX(0);
+        }
+        .overlay {
+            background: rgba(0,0,0,0.4);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 40;
+        }
+        .overlay.show {
+            visibility: visible;
+            opacity: 1;
+        }
+        .sidebar ul li a {
+            padding: 0.75rem 1.5rem;
+            display: block;
+            border-radius: 12px;
+            transition: background 0.2s;
+        }
+        .sidebar ul li a:hover {
+            background: rgba(168,85,247,0.12);
+        }
+        .btn-main {
+            background: linear-gradient(90deg, #a78bfa, #f472b6);
+            color: #fff;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(168,85,247,0.18);
+            transition: all 0.2s;
+        }
+        .btn-main:hover {
+            background: linear-gradient(90deg, #f472b6, #a78bfa);
+            box-shadow: 0 6px 20px rgba(168,85,247,0.28);
+        }
+        .required {
+            color: #ef4444;
+            margin-left: 2px;
+        }
+        .form-message {
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Overlay -->
+    <div id="overlay" class="overlay fixed inset-0" onclick="toggleSidebar()"></div>
+    <!-- Navbar -->
+    <nav class="glass fixed top-0 left-0 right-0 z-50 p-4 mx-4 mt-4 rounded-[28px]">
+        <div class="flex items-center justify-between max-w-5xl mx-auto">
+            <a href="index.html" class="text-2xl font-black flex items-center text-purple-700">
+                <i class="ph ph-smiley text-3xl mr-2 text-pink-400"></i>
+                MemeGroup
+            </a>
+            <div class="hidden md:flex space-x-6 text-lg">
+                <a href="index.html" class="hover:text-pink-500 transition">Trang Chủ</a>
+                <a href="#meme-moi" class="hover:text-pink-500 transition">Meme Mới</a>
+                <a href="#nhom-cua-toi" class="hover:text-pink-500 transition">Nhóm Của Tôi</a>
+                <a href="lien-he.html" class="hover:text-pink-500 transition font-bold text-pink-500">Liên Hệ</a>
+                <button class="btn-main py-1.5 px-4 rounded-full">Đăng Nhập</button>
+            </div>
+            <button id="menuBtn" class="md:hidden p-2 text-purple-700" onclick="toggleSidebar()">
+                <i class="ph-list text-3xl"></i>
+            </button>
+        </div>
+    </nav>
+    <!-- Sidebar (Mobile) -->
+    <div id="sidebar" class="sidebar fixed top-0 right-0 w-80 h-full glass md:hidden">
+        <div class="flex justify-between items-center p-6 mb-4 mt-12">
+            <h2 class="text-2xl font-bold text-purple-700">Menu</h2>
+            <button class="p-2 text-pink-400" onclick="toggleSidebar()">
+                <i class="ph-x text-3xl"></i>
+            </button>
+        </div>
+        <ul class="flex flex-col space-y-2 p-4">
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="#meme-moi" onclick="toggleSidebar()">Meme Mới</a></li>
+            <li><a href="#nhom-cua-toi" onclick="toggleSidebar()">Nhóm Của Tôi</a></li>
+            <li><a href="lien-he.html" onclick="toggleSidebar()">Liên Hệ</a></li>
+            <li class="pt-4">
+                <button class="btn-main w-full py-2.5 rounded-xl">Đăng Ký</button>
+            </li>
+        </ul>
+    </div>
+    <main class="max-w-xl mx-auto p-4 sm:p-6 lg:p-8 opacity-0 translate-y-8 transition-all duration-700" id="main-content">
+        <div class="glass p-6 rounded-[28px] fade-section transition-all duration-700 opacity-0 translate-y-8">
+            <h1 class="text-3xl font-bold text-purple-700 mb-4">Liên hệ với MemeGroup</h1>
+            <form id="contactForm" class="space-y-4" enctype="multipart/form-data" method="POST">
+                <div>
+                    <label for="email" class="block font-semibold mb-1">Email <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required class="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-pink-300" placeholder="Nhập email của bạn">
+                </div>
+                <div>
+                    <label for="tieude" class="block font-semibold mb-1">Tiêu đề</label>
+                    <input type="text" id="tieude" name="tieude" class="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-pink-300" placeholder="Tiêu đề (không bắt buộc)">
+                </div>
+                <div>
+                    <label for="file" class="block font-semibold mb-1">Tải video/hình ảnh <span class="required">*</span></label>
+                    <input type="file" id="file" name="file" accept="video/*,image/*" required multiple class="w-full p-2 rounded-lg border border-gray-200 bg-white">
+                </div>
+                <button type="submit" class="btn-main py-2 px-6 rounded-full w-full text-lg">Gửi liên hệ</button>
+                <div id="formMessage" class="form-message text-center text-pink-500"></div>
+            </form>
+        </div>
+    </main>
+    <!-- Dialog thông báo lỗi -->
+    <div id="errorDialog" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 hidden">
+        <div class="bg-white rounded-2xl shadow-xl p-6 max-w-xs w-full text-center">
+            <div class="text-red-500 text-3xl mb-2"><i class="ph ph-warning"></i></div>
+            <div class="font-semibold text-gray-800 mb-4">Có lỗi xảy ra, vui lòng thử lại sau! <br>hoặc có thể gửi bằng cách khác </div>
+            <div class="flex justify-center gap-4">
+                <button id="cancelDialog" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 font-semibold">Hủy</button>
+                <button id="redirectDialog" class="px-4 py-2 rounded-lg bg-pink-500 text-white hover:bg-pink-600 font-semibold">Chuyển tiếp</button>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center py-6 text-gray-400 text-sm">
+        &copy; 2025 MemeGroup. Chia sẻ meme cùng bạn bè, cười vui mỗi ngày!
+    </footer>
+    <script>
+        // Sidebar cho mobile
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        function toggleSidebar() {
+            const isOpen = sidebar.classList.contains('open');
+            if (isOpen) {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('show');
+                document.body.style.overflow = '';
+            } else {
+                sidebar.classList.add('open');
+                overlay.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Hiệu ứng hiện ra khi load trang và khi scroll tới section
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('main-content').classList.remove('opacity-0', 'translate-y-8');
+            document.querySelectorAll('.fade-section').forEach(section => {
+                section.classList.remove('opacity-0', 'translate-y-8');
+            });
+        });
+
+        // Dialog xử lý lỗi gửi mail
+        const errorDialog = document.getElementById('errorDialog');
+        const cancelDialog = document.getElementById('cancelDialog');
+        const redirectDialog = document.getElementById('redirectDialog');
+        if (cancelDialog && redirectDialog) {
+            cancelDialog.onclick = () => errorDialog.classList.add('hidden');
+            redirectDialog.onclick = () => window.open("https://forms.gle/RVR7MNJ4mq7MPwB27", "_blank");
+        }
+
+        // Xử lý gửi form bằng EmailJS (gửi thực sự, không alert)
+        (function() {
+            const SERVICE_ID = 'service_es8fzgq';
+            const PUBLIC_KEY = '60SN50tMWfrOMpFe0';
+            const TEMPLATE_ID = 'template_13t33am';
+
+            const form = document.getElementById('contactForm');
+            const formMessage = document.getElementById('formMessage');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Kiểm tra email
+                const email = form.email.value.trim();
+                if (!email) {
+                    formMessage.textContent = 'Vui lòng nhập email!';
+                    return;
+                }
+                // Kiểm tra nhiều email
+                if (email.split(',').length > 1) {
+                    formMessage.textContent = 'Chỉ được nhập 1 email!';
+                    return;
+                }
+                // Kiểm tra file
+                const files = form.file.files;
+                if (!files.length) {
+                    formMessage.textContent = 'Vui lòng tải lên ít nhất 1 video hoặc hình ảnh!';
+                    return;
+                }
+
+                formMessage.textContent = 'Đang gửi...';
+                emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form, PUBLIC_KEY)
+                    .then(function() {
+                        formMessage.textContent = 'Gửi liên hệ thành công! Cảm ơn bạn đã đóng góp.';
+                        form.reset();
+                    }, function(error) {
+                        formMessage.textContent = '';
+                        errorDialog.classList.remove('hidden');
+                    });
+            });
+        })();
+    </script>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function(){
+            emailjs.init("60SN50tMWfrOMpFe0");
+        })();
+    </script>
+</body>
+</html>

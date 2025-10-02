@@ -12,17 +12,17 @@
     <script src="https://unpkg.com/phosphor-icons"></script>
     <style>
         body {
-            background: linear-gradient(135deg, #f8fafc 0%, #c7d2fe 50%, #f0abfc 100%);
+            background: linear-gradient(135deg, #f8fafc 0%, #3852b9 50%, #bc44d6 100%);
             min-height: 100vh;
             font-family: 'Inter', sans-serif;
             color: #22223b;
             padding-top: 5rem;
         }
         .glass {
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.232);
+            backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1.5px solid rgba(200,200,255,0.18);
+            border: 1.5px solid rgba(200, 200, 255, 0.523);
             box-shadow: 0 8px 32px 0 rgba(168, 85, 247, 0.12);
         }
         .sidebar {
@@ -48,7 +48,7 @@
             padding: 0.75rem 1.5rem;
             display: block;
             border-radius: 12px;
-            transition: background 0.2s;
+            transition: background 0.9s;
         }
         .sidebar ul li a:hover {
             background: rgba(168,85,247,0.12);
@@ -74,15 +74,15 @@
     <!-- Navbar -->
     <nav class="glass fixed top-0 left-0 right-0 z-50 p-4 mx-4 mt-4 rounded-[28px] opacity-0 translate-y-[-20px] transition-all duration-700" id="navbar">
         <div class="flex items-center justify-between max-w-5xl mx-auto">
-            <a href="#" class="text-2xl font-black flex items-center text-purple-700">
+            <a href="index.html" class="text-2xl font-black flex items-center text-purple-700">
                 <i class="ph ph-smiley text-3xl mr-2 text-pink-400"></i>
                 MemeGroup
             </a>
             <div class="hidden md:flex space-x-6 text-lg">
-                <a href="#" class="hover:text-pink-500 transition">Trang Chủ</a>
-                <a href="#" class="hover:text-pink-500 transition">Meme Mới</a>
-                <a href="#" class="hover:text-pink-500 transition">Nhóm Của Tôi</a>
-                <a href="#" class="hover:text-pink-500 transition">Liên Hệ</a>
+                <a href="index.html" class="hover:text-pink-500 transition">Trang Chủ</a>
+                <a href="#meme-moi" class="hover:text-pink-500 transition">Meme Mới</a>
+                <a href="#nhom-cua-toi" class="hover:text-pink-500 transition">Nhóm Của Tôi</a>
+                <a href="lien-he.html" class="hover:text-pink-500 transition">Liên Hệ</a>
                 <button class="btn-main py-1.5 px-4 rounded-full">Đăng Nhập</button>
             </div>
             <button id="menuBtn" class="md:hidden p-2 text-purple-700" onclick="toggleSidebar()">
@@ -100,10 +100,10 @@
             </button>
         </div>
         <ul class="flex flex-col space-y-2 p-4">
-            <li><a href="#">Trang Chủ</a></li>
-            <li><a href="#">Meme Mới</a></li>
-            <li><a href="#">Nhóm Của Tôi</a></li>
-            <li><a href="#">Liên Hệ</a></li>
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="#meme-moi" onclick="toggleSidebar()">Meme Mới</a></li>
+            <li><a href="#nhom-cua-toi" onclick="toggleSidebar()">Nhóm Của Tôi</a></li>
+            <li><a href="lien-he.html" onclick="toggleSidebar()">Liên Hệ</a></li>
             <li class="pt-4">
                 <button class="btn-main w-full py-2.5 rounded-xl">Đăng Ký</button>
             </li>
@@ -116,7 +116,7 @@
             Chuyền <span class="text-pink-400">Video Meme</span> Bạn Bè Cùng Nhóm!
         </h1>
         <!-- Meme Video Section -->
-        <section class="mb-12 fade-section transition-all duration-700 opacity-0 translate-y-8">
+        <section id="meme-moi" class="mb-12 fade-section transition-all duration-700 opacity-0 translate-y-8">
             <h2 class="text-3xl font-bold text-pink-400 mb-6 border-b border-pink-200 pb-2">Meme Hot Nhất</h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Main Meme Video Card -->
@@ -145,37 +145,49 @@
                 <div class="space-y-4">
                     <article class="glass p-4 rounded-xl flex items-center space-x-4">
                         <div class="w-32 h-20 bg-purple-100 rounded-lg flex items-center justify-center text-2xl text-purple-400 overflow-hidden">
-                            <video controls class="w-full h-full object-cover rounded-lg">
-                                <source src="vid/7055904370012.mp4" type="video/mp4">
-                                Trình duyệt của bạn không hỗ trợ video.
-                            </video>
+                            <a href="video-7055904370012.html" class="block w-full h-full">
+                                <video controls class="w-full h-full object-cover rounded-lg">
+                                    <source src="vid/7055904370012.mp4" type="video/mp4">
+                                    Trình duyệt của bạn không hỗ trợ video.
+                                </video>
+                            </a>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-purple-700 hover:text-pink-400 cursor-pointer">Khi Cả Nhóm Đều Quên Làm Bài Tập</h4>
+                            <a href="video-7055904370012.html">
+                                <h4 class="font-semibold text-purple-700 hover:text-pink-400 cursor-pointer">Khi Cả Nhóm Đều Quên Làm Bài Tập</h4>
+                            </a>
                             <p class="text-xs text-gray-500">Meme | 1 phút</p>
                         </div>
                     </article>
                     <article class="glass p-4 rounded-xl flex items-center space-x-4">
                         <div class="w-32 h-20 bg-pink-100 rounded-lg flex items-center justify-center text-2xl text-pink-400 overflow-hidden">
-                            <video controls class="w-full h-full object-cover rounded-lg">
-                                <source src="vid/vd1.mp4" type="video/mp4">
-                                Trình duyệt của bạn không hỗ trợ video.
-                            </video>
+                            <a href="video-vd1.html" class="block w-full h-full">
+                                <video controls class="w-full h-full object-cover rounded-lg">
+                                    <source src="vid/vd1.mp4" type="video/mp4">
+                                    Trình duyệt của bạn không hỗ trợ video.
+                                </video>
+                            </a>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-purple-700 hover:text-pink-400 cursor-pointer">Thằng Bạn Chơi Game Thua Cay</h4>
+                            <a href="video-vd1.html">
+                                <h4 class="font-semibold text-purple-700 hover:text-pink-400 cursor-pointer">Thằng Bạn Chơi Game Thua Cay</h4>
+                            </a>
                             <p class="text-xs text-gray-500">Meme | 45 giây</p>
                         </div>
                     </article>
                     <article class="glass p-4 rounded-xl flex items-center space-x-4">
                         <div class="w-32 h-20 bg-yellow-100 rounded-lg flex items-center justify-center text-2xl text-yellow-400 overflow-hidden">
-                            <video controls class="w-full h-full object-cover rounded-lg">
-                                <source src="vid/vd2.mp4" type="video/mp4">
-                                Trình duyệt của bạn không hỗ trợ video.
-                            </video>
+                            <a href="video-vd2.html" class="block w-full h-full">
+                                <video controls class="w-full h-full object-cover rounded-lg">
+                                    <source src="vid/vd2.mp4" type="video/mp4">
+                                    Trình duyệt của bạn không hỗ trợ video.
+                                </video>
+                            </a>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-purple-700 hover:text-pink-400 cursor-pointer">Khi Nhóm Chat Lúc 2h Sáng</h4>
+                            <a href="video-vd2.html">
+                                <h4 class="font-semibold text-purple-700 hover:text-pink-400 cursor-pointer">Khi Nhóm Chat Lúc 2h Sáng</h4>
+                            </a>
                             <p class="text-xs text-gray-500">Meme | 30 giây</p>
                         </div>
                     </article>
@@ -183,47 +195,63 @@
             </div>
         </section>
         <!-- Group Meme Section -->
-        <section class="mb-12 fade-section transition-all duration-700 opacity-0 translate-y-8">
+        <section id="nhom-cua-toi" class="mb-12 fade-section transition-all duration-700 opacity-0 translate-y-8">
             <h2 class="text-3xl font-bold text-purple-700 mb-6 border-b border-pink-200 pb-2">Meme Nhóm Của Bạn</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <article class="glass p-4 rounded-[20px] hover:scale-[1.03] transition-transform duration-300 cursor-pointer">
                     <div class="aspect-video bg-pink-100 rounded-xl mb-3 flex items-center justify-center text-2xl text-pink-400 overflow-hidden">
-                        <video controls class="w-full h-full object-cover rounded-xl">
-                            <source src="vid/7055881323875.mp4" type="video/mp4">
-                            Trình duyệt của bạn không hỗ trợ video.
-                        </video>
+                        <a href="video-7055881323875.html" class="block w-full h-full">
+                            <video controls class="w-full h-full object-cover rounded-xl">
+                                <source src="vid/7055881323875.mp4" type="video/mp4">
+                                Trình duyệt của bạn không hỗ trợ video.
+                            </video>
+                        </a>
                     </div>
-                    <h3 class="font-semibold text-purple-700 mb-1 hover:text-pink-400">Chuyền Meme: Đứa Bạn Lầy Nhất</h3>
+                    <a href="video-7055881323875.html">
+                        <h3 class="font-semibold text-purple-700 mb-1 hover:text-pink-400">Chuyền Meme: Đứa Bạn Lầy Nhất</h3>
+                    </a>
                     <p class="text-xs text-gray-500">12 lượt chia sẻ</p>
                 </article>
                 <article class="glass p-4 rounded-[20px] hover:scale-[1.03] transition-transform duration-300 cursor-pointer">
                     <div class="aspect-video bg-purple-100 rounded-xl mb-3 flex items-center justify-center text-2xl text-purple-400 overflow-hidden">
-                        <video controls class="w-full h-full object-cover rounded-xl">
-                            <source src="vid/7055904370012.mp4" type="video/mp4">
-                            Trình duyệt của bạn không hỗ trợ video.
-                        </video>
+                        <a href="video-7055904370012.html" class="block w-full h-full">
+                            <video controls class="w-full h-full object-cover rounded-xl">
+                                <source src="vid/7055904370012.mp4" type="video/mp4">
+                                Trình duyệt của bạn không hỗ trợ video.
+                            </video>
+                        </a>
                     </div>
-                    <h3 class="font-semibold text-purple-700 mb-1 hover:text-pink-400">Meme: Cả Nhóm Đi Ăn Trả Tiền</h3>
+                    <a href="video-7055904370012.html">
+                        <h3 class="font-semibold text-purple-700 mb-1 hover:text-pink-400">Meme: Cả Nhóm Đi Ăn Trả Tiền</h3>
+                    </a>
                     <p class="text-xs text-gray-500">8 lượt chia sẻ</p>
                 </article>
                 <article class="glass p-4 rounded-[20px] hover:scale-[1.03] transition-transform duration-300 cursor-pointer">
                     <div class="aspect-video bg-yellow-100 rounded-xl mb-3 flex items-center justify-center text-2xl text-yellow-400 overflow-hidden">
-                        <video controls class="w-full h-full object-cover rounded-xl">
-                            <source src="vid/vd1.mp4" type="video/mp4">
-                            Trình duyệt của bạn không hỗ trợ video.
-                        </video>
+                        <a href="video-vd1.html" class="block w-full h-full">
+                            <video controls class="w-full h-full object-cover rounded-xl">
+                                <source src="vid/vd1.mp4" type="video/mp4">
+                                Trình duyệt của bạn không hỗ trợ video.
+                            </video>
+                        </a>
                     </div>
-                    <h3 class="font-semibold text-purple-700 mb-1 hover:text-pink-400">Meme: Đứa Bạn Đến Muộn</h3>
+                    <a href="video-vd1.html">
+                        <h3 class="font-semibold text-purple-700 mb-1 hover:text-pink-400">Meme: Đứa Bạn Đến Muộn</h3>
+                    </a>
                     <p class="text-xs text-gray-500">15 lượt chia sẻ</p>
                 </article>
                 <article class="glass p-4 rounded-[20px] hover:scale-[1.03] transition-transform duration-300 cursor-pointer">
                     <div class="aspect-video bg-green-100 rounded-xl mb-3 flex items-center justify-center text-2xl text-green-400 overflow-hidden">
-                        <video controls class="w-full h-full object-cover rounded-xl">
-                            <source src="vid/vd2.mp4" type="video/mp4">
-                            Trình duyệt của bạn không hỗ trợ video.
-                        </video>
+                        <a href="video-vd2.html" class="block w-full h-full">
+                            <video controls class="w-full h-full object-cover rounded-xl">
+                                <source src="vid/vd2.mp4" type="video/mp4">
+                                Trình duyệt của bạn không hỗ trợ video.
+                            </video>
+                        </a>
                     </div>
-                    <h3 class="font-semibold text-purple-700 mb-1 hover:text-pink-400">Meme: Nhóm Học Online</h3>
+                    <a href="video-vd2.html">
+                        <h3 class="font-semibold text-purple-700 mb-1 hover:text-pink-400">Meme: Nhóm Học Online</h3>
+                    </a>
                     <p class="text-xs text-gray-500">22 lượt chia sẻ</p>
                 </article>
             </div>
@@ -231,7 +259,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="text-center py-6 text-gray-400 text-sm">
+    <footer id="footer" class="text-center py-6 text-gray-400 text-sm">
         &copy; 2025 MemeGroup. Chia sẻ meme cùng bạn bè, cười vui mỗi ngày!
     </footer>
 
