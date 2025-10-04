@@ -3,25 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khi Nhóm Bạn Được Nghỉ Học Đột Xuất 😂 | MemeGroup</title>
-    <meta name="description" content="Xem video meme Khi Nhóm Bạn Được Nghỉ Học Đột Xuất 😂 cùng bạn bè tại MemeGroup.">
-    <!-- Schema markup cho SEO -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "VideoObject",
-      "name": "Khi Nhóm Bạn Được Nghỉ Học Đột Xuất 😂",
-      "description": "Video meme vui nhộn về nhóm bạn được nghỉ học đột xuất.",
-      "thumbnailUrl": "",
-      "uploadDate": "2025-10-02",
-      "contentUrl": "vid/7055881323875.mp4",
-      "embedUrl": "vid/7055881323875.mp4"
-    }
-    </script>
-    <!-- Tailwind CSS -->
+    <title>Về Chúng Tôi | MemeGroup</title>
+    <meta name="description" content="Giới thiệu về MemeGroup và thành viên sáng lập.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <!-- Phosphor Icons -->
     <script src="https://unpkg.com/phosphor-icons"></script>
     <style>
         body {
@@ -61,7 +46,7 @@
             padding: 0.75rem 1.5rem;
             display: block;
             border-radius: 12px;
-            transition: background 0.2s;
+            transition: background 0.9s;
         }
         .sidebar ul li a:hover {
             background: rgba(168,85,247,0.12);
@@ -71,20 +56,23 @@
             color: #fff;
             font-weight: 700;
             box-shadow: 0 4px 15px rgba(168,85,247,0.18);
-            transition: all 0.2s;
+            transition: all 0.5s;
         }
         .btn-main:hover {
             background: linear-gradient(90deg, #f472b6, #a78bfa);
+            transition: all 1s;
             box-shadow: 0 6px 20px rgba(168,85,247,0.28);
+        }
+        .avatar-shadow {
+            box-shadow: 0 4px 24px 0 rgba(168, 85, 247, 0.18);
         }
     </style>
 </head>
 <body>
     <!-- Overlay -->
     <div id="overlay" class="overlay fixed inset-0" onclick="toggleSidebar()"></div>
-
     <!-- Navbar -->
-    <nav class="glass fixed top-0 left-0 right-0 z-50 p-4 mx-4 mt-4 rounded-[28px]">
+    <nav class="glass fixed top-0 left-0 right-0 z-50 p-4 mx-4 mt-4 rounded-[28px] opacity-0 translate-y-[-20px] transition-all duration-700" id="navbar">
         <div class="flex items-center justify-between max-w-5xl mx-auto">
             <a href="index.html" class="text-2xl font-black flex items-center text-purple-700">
                 <i class="ph ph-smiley text-3xl mr-2 text-pink-400"></i>
@@ -92,10 +80,10 @@
             </a>
             <div class="hidden md:flex space-x-6 text-lg">
                 <a href="index.html" class="hover:text-pink-500 transition">Trang Chủ</a>
-                <a href="#" class="hover:text-pink-500 transition">Meme Mới</a>
-                <a href="#" class="hover:text-pink-500 transition">Nhóm Của Tôi</a>
-                <a href="#" class="hover:text-pink-500 transition">Liên Hệ</a>
-                <a href="ve-chung-toi.html" class="hover:text-pink-500 transition">Thông tin</a>
+                <a href="#meme-moi" class="hover:text-pink-500 transition">Meme Mới</a>
+                <a href="#nhom-cua-toi" class="hover:text-pink-500 transition">Nhóm Của Tôi</a>
+                <a href="lien-he.html" class="hover:text-pink-500 transition">Liên Hệ</a>
+                <a href="ve-chung-toi.html" class="hover:text-pink-500 transition font-bold text-pink-500">Thông tin</a>
                 <button class="btn-main py-1.5 px-4 rounded-full">Đăng Nhập</button>
             </div>
             <button id="menuBtn" class="md:hidden p-2 text-purple-700" onclick="toggleSidebar()">
@@ -103,9 +91,8 @@
             </button>
         </div>
     </nav>
-
     <!-- Sidebar (Mobile) -->
-    <div id="sidebar" class="sidebar fixed top-0 right-0 w-80 h-full glass md:hidden">
+    <div id="sidebar" class="sidebar fixed top-0 right-0 w-80 h-full glass md:hidden opacity-0 translate-x-10 transition-all duration-700">
         <div class="flex justify-between items-center p-6 mb-4 mt-12">
             <h2 class="text-2xl font-bold text-purple-700">Menu</h2>
             <button class="p-2 text-pink-400" onclick="toggleSidebar()">
@@ -114,31 +101,54 @@
         </div>
         <ul class="flex flex-col space-y-2 p-4">
             <li><a href="index.html">Trang Chủ</a></li>
-            <li><a href="#">Meme Mới</a></li>
-            <li><a href="#">Nhóm Của Tôi</a></li>
-            <li><a href="#">Liên Hệ</a></li>
+            <li><a href="#meme-moi" onclick="toggleSidebar()">Meme Mới</a></li>
+            <li><a href="#nhom-cua-toi" onclick="toggleSidebar()">Nhóm Của Tôi</a></li>
+            <li><a href="lien-he.html" onclick="toggleSidebar()">Liên Hệ</a></li>
+            <li><a href="ve-chung-toi.html" onclick="toggleSidebar()" class="hover:text-pink-500 transition font-bold text-pink-500">Về Chúng Tôi</a></li>
             <li class="pt-4">
                 <button class="btn-main w-full py-2.5 rounded-xl">Đăng Ký</button>
             </li>
         </ul>
     </div>
-
-    <main class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8 mt-8">
-        <div class="glass p-6 rounded-[28px]">
-            <h1 class="text-3xl font-bold text-purple-700 mb-4">Khi Nhóm Bạn Được Nghỉ Học Đột Xuất 😂</h1>
-            <video controls class="w-full rounded-2xl bg-black mb-4">
-                <source src="vid/7055881323875.mp4" type="video/mp4">
-                Trình duyệt của bạn không hỗ trợ video.
-            </video>
-            <p class="text-gray-600 mb-2">Đăng bởi: <span class="font-semibold text-pink-400">Hải Meme</span> | 02/10/2025</p>
-            <p class="mb-4">Video meme vui nhộn về nhóm bạn được nghỉ học đột xuất. Chia sẻ ngay với bạn bè để cùng cười nhé!</p>
-            <a href="index.html" class="btn-main py-2 px-6 rounded-full inline-block">← Quay lại Trang chủ</a>
+    <main class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8 mt-24 mb-8 opacity-0 translate-y-8 transition-all duration-700" id="main-content">
+        <div class="glass p-6 sm:p-8 rounded-[36px] shadow-2xl fade-section transition-all duration-700 opacity-0 translate-y-8">
+            <div class="flex flex-col items-center text-center">
+                <img src="vid/avata.jpg" alt="Avatar của bạn" class="w-36 h-36 rounded-full avatar-shadow mb-6 border-4 border-white object-cover">
+                <h1 class="text-3xl font-bold text-purple-700 mb-2">Về Tôi</h1>
+                <p class="text-lg text-gray-700 mb-4">Xin chào! Mình là <span class="font-bold text-pink-500">người sáng lập MemeGroup</span>.<br>
+                Mục tiêu của mình là tạo ra một nền tảng chia sẻ video meme vui nhộn, kết nối bạn bè và lan tỏa tiếng cười mỗi ngày.</p>
+                <div class="flex flex-col items-center gap-2 text-gray-500 text-base">
+                    <span><i class="ph ph-envelope-simple text-pink-400"></i> Email: <a href="mailto:plament294@gmail.com" class="underline hover:text-pink-500">plament294@gmail.com</a></span>
+                    <span><i class="ph ph-map-pin text-purple-400"></i> Việt Nam</span>
+                </div>
+            </div>
         </div>
     </main>
     <footer class="text-center py-6 text-gray-400 text-sm">
         &copy; 2025 MemeGroup. Chia sẻ meme cùng bạn bè, cười vui mỗi ngày!
     </footer>
     <script>
+        // Hiệu ứng hiện ra khi load trang
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('navbar').classList.remove('opacity-0', 'translate-y-[-20px]');
+            document.getElementById('main-content').classList.remove('opacity-0', 'translate-y-8');
+            document.getElementById('sidebar').classList.remove('opacity-0', 'translate-x-10');
+        });
+
+        // Hiệu ứng khi scroll tới section
+        function revealOnScroll() {
+            const sections = document.querySelectorAll('.fade-section');
+            const triggerBottom = window.innerHeight * 0.9;
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < triggerBottom) {
+                    section.classList.remove('opacity-0', 'translate-y-8');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('DOMContentLoaded', revealOnScroll);
+
         // Sidebar cho mobile
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
